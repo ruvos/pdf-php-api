@@ -12,3 +12,4 @@
 /.phpunit.cache/
 /public/infection/
 /public/report/
+/public/reports/

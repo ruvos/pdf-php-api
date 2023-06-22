@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Pdf\Adapter\FpdfAdapter;
+use PdfPhp\Pdf\Adapter\FpdfAdapter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
