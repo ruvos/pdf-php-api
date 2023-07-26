@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: PDF-PHP API
+  description: Eine Schnittstellendokumentation für das PDF-PHP Projekt
+  version: 0.0.1
+servers:
+  - url: https://pdf-php.ddev.site/
+    description: DDEV Umgebung
+  - url: https://pdf.katschek.de
+    description: Der Zukünftige Staging Server
+paths:
+  /elements:
+    get:
+      summary: Returns a list of all provided ElementTypes
+      description: The PDF is build with elements. All Types of elements are provided by this Endpoint.
+      responses:
+        '200':
+          description: A JSON array of Elements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

@@ -1,0 +1,9 @@
+services:
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 999:8080
+    volumes:
+      - ../project/doc:/doc
+    environment:
+      - SWAGGER_JSON=/doc/swagger.yaml
