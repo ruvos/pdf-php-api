@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
-use PdfPhp\Pdf\Adapter\FpdfAdapter;
+use PdfPhp\Converter\DocumentToPdfConverter;
+use PdfPhp\Converter\JsonDocumentConverter;
+use PdfPhp\Pdf\Adapter\Adapter\FpdfAdapter;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,7 +14,6 @@ class MainController
     #[Route(path: '/', name: 'main')]
     public function main(): Response
     {
-
      return new Response("Hello World!");
     }
 
@@ -20,7 +22,7 @@ class MainController
     {
         $pdfAdapter = new FpdfAdapter();
 
-        $fpdf = $pdfAdapter->getFpdf();
+        $fpdf = $pdfAdapter->buildPdf();
         $fpdf->SetFont('Times');
         $fpdf->AddPage();
         $fpdf->SetFillColor(202,23,54);
@@ -36,5 +38,19 @@ class MainController
         $fpdf->Output('I');
 
 die();
+    }
+
+    #[Route('/v1/json/document', 'v1_json_document')]
+    public function jsonToDocument(Request $request)
+    {
+        $content = $request->getContent();
+
+        $jsonConverter = new JsonDocumentConverter();
+
+        $document = $jsonConverter->jsonToDocument($content);
+
+        $documentToPdfConverter = new DocumentToPdfConverter($document);
+        $documentToPdfConverter->buildPdf();
+    die();
     }
 }

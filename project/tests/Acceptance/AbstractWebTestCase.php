@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class AbstractWebTestCase extends TestCase
+abstract class AbstractWebTestCase extends TestCase
 {
     protected function doRequest(string $requestType = Request::METHOD_GET, string $url = ''): ResponseInterface
     {
