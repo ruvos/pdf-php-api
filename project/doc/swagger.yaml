@@ -66,11 +66,7 @@ components:
         elements:
           type: array
           items:
-            $ref: '#/components/schemas/elements'
-    elements:
-      type: array
-      items:
-        $ref: '#/components/schemas/PageElement'
+            $ref: '#/components/schemas/PageElement'
     PageElement:
       type: object
       properties:
