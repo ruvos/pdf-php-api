@@ -9,33 +9,19 @@ servers:
   - url: https://pdf.katschek.de
     description: Der Zukünftige Staging Server
 paths:
-  /elements:
-    get:
-      summary: Returns a list of all provided ElementTypes
-      description: The PDF is build with elements. All Types of elements are provided by this Endpoint.
-      responses:
-        '200':
-          description: A JSON array of Elements
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: string
-
-  /v1/json/document:
+  /v1/json/document/template:
     post:
-      summary: PDF generate
-      description: Generiert ein PDF auf Basis des gegebenen Templates
+      summary: PDF generierung
+      description: Generiert ein PDF auf Basis des gegebenen templates, welches ein json format haben muss.
       requestBody:
-        description: Das PDF-template, welches die Vorlage, für das PDF ist.
+        description: Das json template.
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PdfTemplate'
       responses:
         '200':
-          description: A giant PDF string
+          description: Ein json string, mit einem array => value mapping, welches gegen die Schnittstelle für die Erstellung gegeben werden muss.
           content:
             application/json:
               schema:
@@ -78,17 +64,21 @@ components:
           type: integer
           description: Die Breite einer Zelle
           example: 23
-        cellXPosition:
+        xCellPosition:
           type: integer
           description: Die X Position der Zelle
           example: 12
-        cellYPosition:
+        yCellPosition:
           type: integer
           description: Die Y Position der Zelle
           example: 12
         elementName:
           type: string
           description: Der Name des Elements
+          example: Datum
+          required: true
         value:
           type: string
-          description: Der Wert des Elements (Achtung, der Wert wird dann statisch gesetzt)
+          description: Das ist der Wert der Zelle. Wenn der Wert leer gelassen wird (null) wird ein platzhalter erstellt um dynamisch inhalt zu laden. Wenn ein Wert gesetzt wird, dann ist dieser statisch in dem Template
+          example: 12.04.1996
+          required: false
