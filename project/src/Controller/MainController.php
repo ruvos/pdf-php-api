@@ -2,22 +2,23 @@
 
 namespace App\Controller;
 
+use App\Component\Path\TemplateLoaderInterface;
 use PdfPhp\Converter\DocumentToPdfConverter;
 use PdfPhp\Converter\JsonDocumentConverter;
-use PdfPhp\Pdf\Adapter\Adapter\FpdfAdapter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class MainController
 {
-    #[Route(path: '/', name: 'main')]
+    public const CREATE_TEMPLATE = '/v1/json/document/template';
+    public const CREATE_PDF = '/v1/create/document';
+
     public function main(): Response
     {
      return new Response("Das ist der Pdf Template Generator!");
     }
 
-    #[Route('/v1/json/document/template', 'v1_json_document')]
     public function jsonToDocument(Request $request): Response
     {
         $content = $request->getContent();
@@ -36,10 +37,9 @@ class MainController
 
         $arrayList = $document->createKeyValueCreationArray($emptyValueDocument);
 
-        return new Response(json_encode($arrayList));
+        return new JsonResponse($arrayList);
     }
 
-    #[Route('/v1/create/document', 'doc_create')]
     public function createDocument(Request $request)
     {
         $params = $request->query->all();

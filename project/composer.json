@@ -22,7 +22,8 @@
         "ruvos/pdf-php": "@dev"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "ext-imagick": "*"
     },
     "config": {
         "allow-plugins": {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route
+            id="main"
+            path="/"
+            controller="App\Controller\MainController::main"
+            methods="GET"
+    />
+    <route
+            id="v1_json_document"
+            path="/v1/json/document/template"
+            controller="App\Controller\MainController::jsonToDocument"
+            methods="POST"
+    />
+    <route
+            id="doc_create"
+            path="/v1/create/document"
+            controller="App\Controller\MainController::createDocument"
+    />
+</routes>
