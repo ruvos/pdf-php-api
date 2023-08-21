@@ -10,7 +10,13 @@
 
         <service id="App\Controller\MainController"  class="App\Controller\MainController" public="true">
             <tag name="controller.service_arguments" />
+            <argument type="service" id="PdfPhp\Converter\DocumentToPdfConverter"/>
         </service>
-
+        <service id="PdfPhp\Converter\DocumentToPdfConverter" class="PdfPhp\Converter\DocumentToPdfConverter" >
+            <argument type="service" id="PdfPhp\PathLoader\TemplatePathLoader"/>
+        </service>
+        <service id="PdfPhp\PathLoader\TemplatePathLoader" class="PdfPhp\PathLoader\TemplatePathLoader" >
+            <argument>%kernel.project_dir%%env(resolve:TEMPLATE_PATH)%</argument>
+        </service>
     </services>
 </container>

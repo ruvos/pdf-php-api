@@ -6,9 +6,16 @@
         ]
     },
     "phpUnit": {
-        "customPath": "tools/vendor/bin/phpunit"
+        "customPath": "tools/vendor/bin/phpunit",
+        "configDir": "./"
     },
     "mutators": {
         "@default": true
+    },
+    "logs": {
+        "text": "infection.log",
+        "html": "infection.html",
+        "summary": "summary.log",
+        "json": "infection-log.json"
     }
 }

@@ -4,19 +4,19 @@
          bootstrap="vendor/autoload.php"
          cacheDirectory=".phpunit.cache"
          executionOrder="random"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="false"
          failOnRisky="true"
-         failOnWarning="true">
+         failOnWarning="true"
+         resolveDependencies="true"
+         colors="true">
     <testsuites>
         <testsuite name="default">
             <directory>tests</directory>
         </testsuite>
-        <testsuite name="full">
-            <directory>tests</directory>
-            <directory>packages/pdf-php/test</directory>
-        </testsuite>
     </testsuites>
 
-    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <source>
         <include>
             <directory>src</directory>
         </include>

@@ -64,7 +64,7 @@
             "@auto-scripts"
         ],
         "test": "XDEBUG_MODE=coverage tools/vendor/bin/phpunit tests/ --coverage-html public/report",
-        "infection": "tools/vendor/bin/infection --logger-html=public/infection/index.html"
+        "infection-report-prepare": "XDEBUG_MODE=coverage tools/vendor/bin/phpunit --configuration phpunit.xml --coverage-xml=public/infection/coverage-xml --log-junit=public/infection/junit.xml"
     },
     "conflict": {
         "symfony/symfony": "*"

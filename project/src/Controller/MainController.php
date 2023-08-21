@@ -2,8 +2,7 @@
 
 namespace App\Controller;
 
-use App\Component\Path\TemplateLoaderInterface;
-use PdfPhp\Converter\DocumentToPdfConverter;
+use PdfPhp\Converter\DocumentToPdfConverterInterface;
 use PdfPhp\Converter\JsonDocumentConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +12,13 @@ class MainController
 {
     public const CREATE_TEMPLATE = '/v1/json/document/template';
     public const CREATE_PDF = '/v1/create/document';
+
+    private DocumentToPdfConverterInterface $documentToPdfConverter;
+
+    public function __construct(DocumentToPdfConverterInterface $documentToPdfConverter)
+    {
+        $this->documentToPdfConverter = $documentToPdfConverter;
+    }
 
     public function main(): Response
     {
@@ -27,8 +33,7 @@ class MainController
 
         $document = $jsonConverter->jsonToDocument($content);
 
-        $documentToPdfConverter = new DocumentToPdfConverter($document);
-        $documentToPdfConverter->buildPdfTemplate();
+        $this->documentToPdfConverter->buildPdfTemplate($document);
         $emptyValueDocument = $document->createEmptyValueDocument();
 
         $encodedEmptyValueDocument = json_encode($emptyValueDocument);
@@ -54,8 +59,7 @@ class MainController
 
         $document->fillDocumentWithValues($params);
 
-        $documentToPdfConverter = new DocumentToPdfConverter($document);
-        $documentToPdfConverter->buildPdfTemplate('D');
+        $this->documentToPdfConverter->buildPdfTemplate($document, 'D');
 
         die();
     }

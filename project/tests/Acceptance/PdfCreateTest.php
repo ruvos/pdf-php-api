@@ -16,7 +16,7 @@ class PdfCreateTest extends AbstractWebTestCase
         $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
     }
 
-    public function testTemplateCreationIsValid()
+    public function testTemplateCreationIsValid(): void
     {
         $response = $this->doRequest(Request::METHOD_POST,MainController::CREATE_TEMPLATE,['body' => $this->getJsonString()]);
 
