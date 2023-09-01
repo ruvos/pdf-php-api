@@ -3,6 +3,10 @@
     "source": {
         "directories": [
             "src"
+        ],
+        "excludes": [
+            "src/Kernel.php",
+            "packages/"
         ]
     },
     "phpUnit": {
@@ -17,5 +21,6 @@
         "html": "infection.html",
         "summary": "summary.log",
         "json": "infection-log.json"
-    }
+    },
+    "testFrameworkOptions": "--no-coverage"
 }
