@@ -76,9 +76,7 @@ components:
           type: string
           description: Der Name des Elements
           example: Datum
-          required: true
         value:
           type: string
           description: Das ist der Wert der Zelle. Wenn der Wert leer gelassen wird (null) wird ein platzhalter erstellt um dynamisch inhalt zu laden. Wenn ein Wert gesetzt wird, dann ist dieser statisch in dem Template
           example: 12.04.1996
-          required: false
